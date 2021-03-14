@@ -62,7 +62,7 @@ Information needed to spend an output.
 | tx_prefix_hash   | binary            | Bytes of tx prefix hash       |
 | public_key       | binary            | Output public key             |
 | tx_pub_key       | binary            | Ephemeral ECDH key            |
-| spend_key_images | array of binary's | Bytes of key images           |
+| spend_key_images | array of binaries | Bytes of key images           |
 | timestamp        | timestamp         | Timestamp of containing block |
 | height           | uint64            | Containing block height       |
 
@@ -141,7 +141,7 @@ blockchain timestamps do not have sub-seconds.
 | total_sent     | uint64-string    | XMR possibly being spent  |
 | unlock_time    | uint64           | Tx unlock time field      |
 | height *       | uint64           | Block height              |
-| spent_outputs  | array of spend's | List of possible spends   |
+| spent_outputs  | array of spends  | List of possible spends   |
 | payment_id *   | binary           | Bytes of tx payment id    |
 | coinbase       | boolean          | True if tx is coinbase    |
 | mempool        | boolean          | True if tx is in mempool  |
@@ -193,7 +193,7 @@ Randomly selected outputs for use in a ring signature.
 |   Field   |            Type          |       Description       |
 |-----------|--------------------------|-------------------------|
 |  amount   |       uint64-string      | XMR amount, 0 if ringct |
-| outputs * | array of random_output's | Selected outputs        |
+| outputs * | array of random_outputs  | Selected outputs        |
 
 > `outputs` is omitted by the server if the `amount` does not have enough
 > mixable outputs.
@@ -226,7 +226,7 @@ list of candidate spends is returned.
 | start_height         | uint64           | Start height of response  |
 | transaction_height   | uint64           | Total txes sent in Monero |
 | blockchain_height    | uint64           | Current blockchain height |
-| spent_outputs        | array of spend's | Possible spend info       |
+| spent_outputs        | array of spends  | Possible spend info       |
 | rates *              | rates            | Current exchange rates    |
 
 > `rates` is omitted if unavailable.
@@ -255,7 +255,7 @@ spends is returned.
 | scanned_block_height | uint64                 | Current scan progress     |
 | start_height         | uint64                 | Start height of response  |
 | blockchain_height    | uint64                 | Current blockchain height |
-| transactions         | array of transaction's | Possible spend info       |
+| transactions         | array of transactions  | Possible spend info       |
 
 #### `get_random_outs`
 Selects random outputs to use in a ring signature of a new transaction. If the
@@ -271,7 +271,7 @@ locally select outputs using a triangular distribution
 |    Field   |        Type       |          Description             |
 |------------|-------------------|----------------------------------|
 | count      | uint64-string     | Mixin (name is historical)       |
-| amounts    | array of uint32's | XMR amounts that need mixing     |
+| amounts    | array of uint32s  | XMR amounts that need mixing     |
 
 > Clients must use amount `0` when computing a ringct output.
 
@@ -284,7 +284,7 @@ locally select outputs using a triangular distribution
 
 |    Field    |           Type           |          Description             |
 |-------------|--------------------------|----------------------------------|
-| amount_outs | array of random_outputs' | Dummy outputs for each `amounts` |
+| amount_outs | array of random_outputs  | Dummy outputs for each `amounts` |
 
 > If there are not enough outputs to mix for a specific amount, the server
 > shall omit the `outputs` field in `amount_outs`.
@@ -313,7 +313,7 @@ was actually spent.
 |------------|-------------------|-----------------------------------------|
 | per_kb_fee | uint64            | Estimated network fee                   |
 | amount     | uint64-string     | The total value in outputs              |
-| outputs    | array of output's | Outputs possibly available for spending |
+| outputs    | array of outputs  | Outputs possibly available for spending |
 
 #### `import_request`
 Request an account scan from the genesis block.
